@@ -14,5 +14,6 @@
     .headerLink{
         @apply opacity-75 transition hover:opacity-100 cursor-pointer font-bold capitalize  ;
     }
+
     
 }

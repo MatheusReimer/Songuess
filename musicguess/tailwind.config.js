@@ -8,7 +8,11 @@ module.exports = {
   theme: {
     extend: {fontFamily:{
       body:['Merriweather',"serif"]
-    }},
+    },
+    backgroundImage:{
+      'background': "url('/images/bg.png')",
+    }
+  },
   },
   plugins: [],
 }
