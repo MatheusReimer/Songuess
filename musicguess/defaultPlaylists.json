@@ -1,0 +1,32 @@
+[
+    {
+        "id":"1",
+        "background":"",
+        "playlistName":"Best of POP",
+        "description":""
+    },
+    {
+        "id":"2",
+        "background":"",
+        "playlistName":"Best of Rock",
+        "description":""
+    },
+    {
+        "id":"3",
+        "background":"",
+        "playlistName":"Best of 90's",
+        "description":""
+    },
+    {
+        "id":"4",
+        "background":"",
+        "playlistName":"Best of 80's",
+        "description":""
+    },
+    {
+        "id":"5",
+        "background":"",
+        "playlistName":"Brazilian Funk",
+        "description":""
+    }
+]
