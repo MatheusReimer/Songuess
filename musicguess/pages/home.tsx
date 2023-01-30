@@ -2,30 +2,17 @@ import React from 'react'
 import Header from '../components/Header'
 import {getSession, signOut} from 'next-auth/react'
 import LoggedInBanner from '../components/LoggedInBanner'
-import axios from 'axios'
+import { getCategories } from './helpers/homeHelper'
+import { Categories, ItemsOfCategories } from '../types/types'
 
 
 
 
-async function test(session:any){
-    console.log(`Bearer ${session.accessToken}`)
-    let url =  `https://api.spotify.com/v1/tracks/2TpxZ7JUBn3uw46aR7qd6V`
-    const {data} = await axios.get(url, {
-            headers: { 
-              'Authorization':`Bearer ${session.accessToken}`,
-              "Content-Type":"application/json"
-            }
-          })
-    return data
-}
-
-function home(data: string[]) {
+function home({ ... props }) {
     return (
         <div className="h-[100vh] w-full bg-[url('/images/bg.png')]">
             <Header/>
-            <LoggedInBanner genres={data}/>
-
-
+            <LoggedInBanner items={props.categories}/>
         </div>
     )
 }
@@ -34,7 +21,17 @@ export default home
 
 export const getServerSideProps = async (context : any) => {
     const session = await getSession(context);
-    console.log(session?.accessToken)
+    let rawCategories:Categories = await getCategories(session?.user.accessToken)
+    console.log(rawCategories)
+    let categories = rawCategories.categories.items.map((category:ItemsOfCategories) => {
+        return {
+            name: category.name,
+            href:category.href,
+            icons:category.icons === undefined ? "" : category.icons[0].url,
+            id:category.id,
+        }
+    })
+    console.log(categories)
     if (! session) {
         return {
             redirect: {
@@ -42,9 +39,8 @@ export const getServerSideProps = async (context : any) => {
             }
         }
     } else {        
-
         return {props: {
-                session
+                session,categories
             }}
     }
 }

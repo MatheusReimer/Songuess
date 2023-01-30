@@ -1,15 +1,18 @@
-export type UserType = {
-  accessToken : string
-  refreshToken : string
-  username :  string
+export type Items={
+  items:ItemsOfCategories[],
 }
 
+export interface ItemsOfCategories  {
+  href?:string,
+  id?:string,
+  name?:string,
+  icons?:Icons[],
+}
 
-export type SessionType = {
- data: {
-   expires  : string
-   jwt : string
-   user: UserType
- }
- status: "loading" | "authenticated" | "unathenticated"
+export type Icons={
+  url?:string,
+}
+
+export type Categories={
+  categories:Items,
 }
