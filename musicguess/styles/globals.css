@@ -14,6 +14,10 @@
     .headerLink{
         @apply opacity-75 transition hover:opacity-100 cursor-pointer font-bold capitalize  ;
     }
+    .optionLevel{
+        @apply h-[85px] w-[85px] bg-white  border-black border-2 rounded-full flex justify-center text-center items-center text-black  text-lg accent-pink-500 font-light ;
+    }
+
 
     
 }
