@@ -3,7 +3,7 @@ import Header from '../components/Header'
 import {getSession, signOut} from 'next-auth/react'
 import LoggedInBanner from '../components/LoggedInBanner'
 import { getCategories } from './helpers/homeHelper'
-import { Categories, ItemsOfCategories } from '../types/categories'
+
 
 
 

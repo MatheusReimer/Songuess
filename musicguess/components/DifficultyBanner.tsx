@@ -1,4 +1,5 @@
 import {signOut} from 'next-auth/react'
+import Link from 'next/link';
 import React from 'react'
 
 
@@ -6,7 +7,7 @@ function chBackcolor(color:string) {
     document.body.style.background = color;
  }
 
-function DifficultyBanner() {
+function DifficultyBanner({name,id} : {name : string|undefined, id : string|undefined}) {
     return (
         <div className="flex flex-col w-full min-h-[90vh] align-middle justify-center items-center text-black ">
             <button className='bg-pink-500 p-2 border-black rounded-md absolute top-7 text-white right-10'
@@ -22,7 +23,7 @@ function DifficultyBanner() {
                         <h1 className='mb-4 font-semibold'>Timer:</h1>
                         <div className='flex justify-evenly w-full'>
                             <label className='optionLevel'>
-                                <input type="radio" name="timer" value="2" />
+                                <input type="radio" name="timer" value="2" defaultChecked />
                                 <h1>2 Sec</h1>
                             </label>
                             <label className='optionLevel'>
@@ -43,7 +44,7 @@ function DifficultyBanner() {
                         <h1 className='mb-4 font-semibold'>Attempts:</h1>
                         <div className='flex justify-evenly w-full'>
                         <label className='optionLevel'>
-                                <input type="radio" name="attempts" value="1" />
+                                <input type="radio" name="attempts" value="1" defaultChecked />
                                 <h1>1 Try</h1>
                             </label>
                             <label className='optionLevel'>
@@ -59,9 +60,9 @@ function DifficultyBanner() {
                                 <h1>4 Tries</h1>
                             </label>
                         </div>
-                        <a className='mt-4 text-white flex justify-center items-center font-bold cursor-pointer ' href='/'>
+                        <Link className='mt-4 text-white flex justify-center items-center font-bold cursor-pointer ' href={"/play/"+name+"/"+id}>
                             <h1 className='mt-4 p-3 rounded-md bg-pink-500'>Next</h1>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
