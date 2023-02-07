@@ -31,8 +31,8 @@ const scopes = [
 const options = { // https://next-auth.js.org/configuration/providers
     providers: [SpotifyProvider(
             {
-                clientId: process.env.SPOTIFY_CLIENT_ID as string,
-                clientSecret: process.env.SPOTIFY_CLIENT_SECRET as string,
+                clientId: process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID as string,
+                clientSecret: process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET as string,
 
                 authorization: {
                     url: 'https://accounts.spotify.com/authorize',
@@ -69,14 +69,12 @@ const options = { // https://next-auth.js.org/configuration/providers
         ) {
             session.user = token;
             if (Date.now() < new Date(session ?. expires as string).getTime()) {
-                console.log("USER.. BEFORE \n",session.expires)
                 let newToken = await refreshAccessToken(session ?. user ?. refreshToken as string)
                 session.user.accessToken = newToken.access_token;
                 //aumentar tempo de expiração
                 var today = new Date();
                 today.setHours(today.getHours() + 1);
-                session.expires = today.toISOString()
-                console.log("USER.. AFTER \n",session.expires)
+            
             }
             return session;
         }
@@ -90,12 +88,12 @@ export default(req : NextApiRequest, res : NextApiResponse) => NextAuth(req, res
 
 async function refreshAccessToken(token : string) {
     try {
-        const url = process.env.REFRESH_TOKEN_ENDPOINT as string
+        const url = process.env.NEXT_PUBLIC_REFRESH_TOKEN_ENDPOINT as string
 
         const response = await fetch(url, {
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
-                'Authorization': `Basic ` + (new Buffer(process.env.SPOTIFY_CLIENT_ID + ':' + process.env.SPOTIFY_CLIENT_SECRET).toString('base64'))
+                'Authorization': `Basic ` + (new Buffer(process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID + ':' + process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET).toString('base64'))
             },
             method: "POST",
             body: new URLSearchParams(

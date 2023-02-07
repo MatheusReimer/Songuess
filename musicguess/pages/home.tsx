@@ -2,7 +2,7 @@ import React from 'react'
 import Header from '../components/Header'
 import {getSession, signOut} from 'next-auth/react'
 import LoggedInBanner from '../components/LoggedInBanner'
-import { getCategories } from './helpers/homeHelper'
+import { getCategories } from '../helpers/homeHelper'
 
 
 
@@ -30,7 +30,7 @@ export const getServerSideProps = async (context : any) => {
             }
         }
     } else {        
-        let categories = await getCategories(session?.user.accessToken,session?.user.refreshToken,process.env.SPOTIFY_CLIENT_ID as string,process.env.SPOTIFY_CLIENT_SECRET as string, session.expires)
+        let categories = await getCategories(session?.user.accessToken,session?.user.refreshToken,process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID as string,process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET as string, session.expires)
         return {props: {
                 session,categories
             }}

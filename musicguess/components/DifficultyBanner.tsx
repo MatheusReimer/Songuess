@@ -60,7 +60,7 @@ function DifficultyBanner({name,id} : {name : string|undefined, id : string|unde
                                 <h1>4 Tries</h1>
                             </label>
                         </div>
-                        <Link className='mt-4 text-white flex justify-center items-center font-bold cursor-pointer ' href={"/play/"+name+"/"+id}>
+                        <Link className='mt-4 text-white flex justify-center items-center font-bold cursor-pointer ' href={"/play/"+id+"/"+name}>
                             <h1 className='mt-4 p-3 rounded-md bg-pink-500'>Next</h1>
                         </Link>
                     </div>
